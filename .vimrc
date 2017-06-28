@@ -41,6 +41,11 @@ endif
 "--------------------------------------------------
 " Bundles
 
+
+NeoBundle 'isRuslan/vim-es6'
+
+NeoBundle 'flazz/vim-colorschemes'
+
 " Let NeoNeoBundle manage NeoNeoBundle
 NeoBundle 'Shougo/neobundle.vim'
 
@@ -89,6 +94,9 @@ NeoBundle 'scrooloose/syntastic'
 " Install jshint and csslint for syntastic
 " Path to jshint if it not installed, then use local installation
 if isNpmInstalled
+    if !executable(expand(s:defaultNodeModules . 'eslint'))
+        silent ! echo 'Installing eslint' && npm --prefix ~/.vim/ install eslint 
+    endif
     if !executable(expand(s:defaultNodeModules . 'jshint'))
         silent ! echo 'Installing jshint' && npm --prefix ~/.vim/ install jshint
     endif
@@ -148,7 +156,7 @@ NeoBundle 'jelera/vim-javascript-syntax'
 NeoBundle 'elzr/vim-json'
 
 " Syntax highlighting for .jsx (js files for react js)
-NeoBundle 'mxw/vim-jsx'
+" NeoBundle 'mxw/vim-jsx'
 
 " Add Support css3 property
 NeoBundle 'hail2u/vim-css3-syntax'
@@ -311,8 +319,9 @@ function! s:FindSyntasticExecPath(toolName)
 endfunction
 
 " setting up jshint csslint and jscs if available
-let g:syntastic_javascript_jshint_exec = s:FindSyntasticExecPath('jshint')
-let g:syntastic_javascript_jscs_exec = s:FindSyntasticExecPath('jscs')
+" let g:syntastic_javascript_jshint_exec = s:FindSyntasticExecPath('jshint')
+" let g:syntastic_javascript_jscs_exec = s:FindSyntasticExecPath('jscs')
+let g:syntastic_javascript_eslint_exec = s:FindSyntasticExecPath('eslint')
 let g:syntastic_css_csslint_exec= s:FindSyntasticExecPath('csslint')
 
 " Enable autochecks
@@ -325,7 +334,7 @@ let g:syntastic_always_populate_loc_list = 1
 " check json files with jshint
 let g:syntastic_filetype_map = { "json": "javascript", }
 
-let g:syntastic_javascript_checkers = ["jshint", "jscs"]
+let g:syntastic_javascript_checkers = ["eslint"]
 
 " open quicfix window with all error found
 nmap <silent> <leader>ll :Errors<cr>
@@ -511,13 +520,13 @@ call arpeggio#map('i', '', 0, 'jk', '<ESC>')
 " Colorscheme
 
 " Use solarized colorscheme
-colorscheme solarized
+colorscheme Monokai
 
 " Setting up light color scheme
-set background=light
+set background=dark
 
 " set highlighting for colorcolumn
-highlight ColorColumn ctermbg=lightGrey
+highlight ColorColumn ctermbg=darkGrey
 
 "--------------------------------------------------
 " General options
