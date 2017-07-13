@@ -41,6 +41,7 @@ endif
 "--------------------------------------------------
 " Bundles
 
+NeoBundle 'raichoo/purescript-vim'
 
 NeoBundle 'isRuslan/vim-es6'
 
@@ -663,14 +664,14 @@ set expandtab
 set smarttab
 
 " number of spaces to use for each step of indent
-set shiftwidth=4
+set shiftwidth=2
 
 " Number of spaces that a Tab in the file counts for
-set tabstop=4
+set tabstop=2
 
 " Same but for editing operation (not shure what exactly does it means)
 " but in most cases tabstop and softtabstop better be the same
-set softtabstop=4
+set softtabstop=2
 
 " Round indent to multiple of 'shiftwidth'.
 " Indentation always be multiple of shiftwidth
@@ -767,6 +768,9 @@ set diffopt+=iwhite
 
 "--------------------------------------------------
 " Hotkeys
+"
+
+nmap <silent><F6> :NERDTreeToggle<CR>
 
 " Open new tab
 nmap <silent><leader>to :tabnew .<CR>
