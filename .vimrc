@@ -41,6 +41,13 @@ endif
 "--------------------------------------------------
 " Bundles
 
+NeoBundleLazy 'flowtype/vim-flow', {
+  \ 'autoload': {
+  \   'filetypes' : 'javascript'
+  \ }}
+
+NeoBundle 'reasonml-editor/vim-reason'
+
 NeoBundle 'raichoo/purescript-vim'
 
 NeoBundle 'isRuslan/vim-es6'
